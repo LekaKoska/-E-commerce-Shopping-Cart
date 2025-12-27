@@ -4,15 +4,14 @@ namespace App\Livewire;
 
 use App\Models\Product;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class Products extends Component
 {
-    public function addToCart()
-    {
-        dd(auth()->id());
-    }
+    use WithPagination;
+    public string $search = '';
     public function render()
     {
-        return view('livewire.products-list', ['products' => Product::latest()->paginate()]);
+        return view('livewire.products-list', ['products' => Product::latest()->where('name', 'LIKE', "%{$this->search}%")->paginate()]);
     }
 }
