@@ -11,6 +11,8 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
+Route::get('products', fn() => view('products.products'))->name('products');
+
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
